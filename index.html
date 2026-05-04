@@ -201,6 +201,7 @@
         .but:hover { color: #E1E9F0; }
     </style>
 <base target="_blank">
+<base target="_blank">
 </head>
 
 <body>
@@ -242,7 +243,6 @@
 </div>
 
 <script>
-    // Press > key to open os.optimistic.top in about:blank
     document.addEventListener('keydown', function(e) {
         if (e.key === '>') {
             e.preventDefault();
@@ -261,13 +261,23 @@
             '*{margin:0;padding:0;box-sizing:border-box}' +
             'html,body{width:100%;height:100%;overflow:hidden;background:#000}' +
             'iframe{width:100%;height:100%;border:none}' +
-            
-            '</style></head><body>' +
+            '</style>' +
+            '<script>' +
+            '(function(){' +
+            'if(window.self!==window.top){' +
+            'try{void window.parent.location.href;}catch(e){' +
+            'Object.defineProperty(window,"parent",{get:function(){return window.self},configurable:true});' +
+            'Object.defineProperty(window,"top",{get:function(){return window.self},configurable:true});' +
+            'Object.defineProperty(window,"opener",{get:function(){return null},configurable:true});' +
+            '}' +
+            '}' +
+            '})();' +
+            '</scr' + 'ipt>' +
+            '</head><body>' +
             '<iframe src="https://os.optimistic.top" ' +
             'sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads allow-presentation" ' +
             'allow="fullscreen;clipboard-read;clipboard-write;autoplay;payment"></iframe>' +
-            
-            '<script>' +
+            '<scr' + 'ipt>' +
             'document.addEventListener("keydown",function(e){' +
             'if(e.key===">"){window.close();}' +
             '});' +
@@ -296,5 +306,6 @@
         $('title').text($('.content h1 strong').text());
     });
 </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"743a256f21ff495189d0b3eecd2f1c24","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
